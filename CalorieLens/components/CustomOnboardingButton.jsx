@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import * as Haptics from 'expo-haptics';
 
 const getBgVariantStyle = (variant) => {
     switch (variant) {
@@ -9,6 +10,8 @@ const getBgVariantStyle = (variant) => {
             return "bg-secondary-500";
         case "tertiary":
             return "bg-tertiary-500";
+        case "outline":
+            return "bg-transparent border-neutral-300 border-[0.5px]"
         default:
             return "bg-secondary";
     }
@@ -39,15 +42,22 @@ const CustomOnboardingButton = ({
     className,
     ...props
 }) => {
+
+    const onPressWithHaptics = () => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
+        if (onPress) {
+          onPress();
+        }
+    }
+
     return (
         <TouchableOpacity
-            onPress={onPress}
-            className={`w-full rounded-full min-h-[62px] p-3 flex flex-row justify-center items-center shadow-md
-            shadow-neutral-400/70  ${getBgVariantStyle(bgVariant)} ${className}`}
+            onPress={onPressWithHaptics}
+            className={`w-full rounded-full min-h-[50px] p-3 flex flex-row justify-center items-center  ${getBgVariantStyle(bgVariant)} ${className}`}
             {...props}
         >
             {IconLeft && <IconLeft />}
-            <Text className={`text-lg font-semibold ${getTextVariantStyle(textVariant)}`}>{title}</Text>
+            <Text className={`text-lg font-JakartaSemiBold ${getTextVariantStyle(textVariant)}`}>{title}</Text>
             {IconRight && <IconRight />}
         </TouchableOpacity>
     );

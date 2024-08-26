@@ -13,7 +13,7 @@ const GenderScreen = () => {
   const [selectedGender, setSelectedGender] = React.useState(userData.gender || null);
 
   const handleGenderSelect = (gender) => {
-    Haptics.selectionAsync();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
     setSelectedGender(gender);
     updateUser({ gender });
   };
@@ -30,24 +30,24 @@ const GenderScreen = () => {
       <CustomBackButton />
 
       <View className="mt-4">
-        <Text className="text-2xl font-bold text-center mb-2">What is your gender?</Text>
-        <Text className="text-sm text-gray-500 text-center mb-10">We ask for your gender to help tailor your plan based on physiological differences.</Text>
+        <Text className="text-2xl font-JakartaExtraBold text-center mb-2">What is your sex?</Text>
+        <Text className="text-sm font-Jakarta text-gray-500 text-center mb-10">We ask for your sex to help tailor your plan based on physiological differences.</Text>
       </View>
 
       <View className="flex-1 justify-center">
         <View className="space-y-4">
           <TouchableOpacity
-            className={`p-5 rounded-2xl ${selectedGender === 'Male' ? 'bg-green-300' : 'bg-gray-200'}`}
+            className={`p-5 rounded-2xl ${selectedGender === 'Male' ? 'bg-secondary' : 'bg-gray-200'}`}
             onPress={() => handleGenderSelect('Male')}
           >
-            <Text className="text-md text-center font-medium">Male</Text>
+            <Text className="text-md text-center font-JakartaMedium">Male</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            className={`p-5 rounded-2xl ${selectedGender === 'Female' ? 'bg-green-300' : 'bg-gray-200'}`}
+            className={`p-5 rounded-2xl ${selectedGender === 'Female' ? 'bg-secondary' : 'bg-gray-200'}`}
             onPress={() => handleGenderSelect('Female')}
           >
-            <Text className="text-md text-center font-medium">Female</Text>
+            <Text className="text-md text-center font-JakartaMedium">Female</Text>
           </TouchableOpacity>
         </View>
       </View>

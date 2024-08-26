@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack } from 'expo-router';
 import { UserProvider } from '../../context/UserContext';
+import { StatusBar } from 'expo-status-bar';
 
 const OnboardingLayout = () => {
   return (
@@ -13,6 +14,8 @@ const OnboardingLayout = () => {
         }}
       >
       </Stack>
+
+      <StatusBar backgroundColor='#161622' style='dark' />
     </UserProvider>
   );
 }

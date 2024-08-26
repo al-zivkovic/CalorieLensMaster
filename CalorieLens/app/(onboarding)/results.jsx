@@ -25,7 +25,7 @@ const ResultsScreen = () => {
       if (response.status === 201) {
         console.log('User data saved successfully:', response.data);
         // Navigate to the next screen
-        router.push('/home');
+        router.push('/sign-up');
       } else {
         console.error('Failed to save user data:', response.data);
       }
