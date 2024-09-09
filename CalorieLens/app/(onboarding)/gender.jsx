@@ -30,7 +30,7 @@ const GenderScreen = () => {
       <CustomBackButton />
 
       <View className="mt-4">
-        <Text className="text-2xl font-JakartaExtraBold text-center mb-2">What is your sex?</Text>
+        <Text className="text-2xl font-JakartaExtraBold text-center mb-2">What is your biological sex?</Text>
         <Text className="text-sm font-Jakarta text-gray-500 text-center mb-10">We ask for your sex to help tailor your plan based on physiological differences.</Text>
       </View>
 

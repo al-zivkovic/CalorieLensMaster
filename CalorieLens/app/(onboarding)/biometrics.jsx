@@ -51,17 +51,17 @@ const BiometricsScreen = () => {
       <CustomBackButton />
       
       <View className="mt-4">
-        <Text className="text-2xl font-bold text-center mb-2">Height & Weight</Text>
-        <Text className="text-sm text-gray-500 text-center mb-10">This will help us tailor your plan.</Text>
+        <Text className="text-2xl font-JakartaBold text-center mb-2">Height & Weight</Text>
+        <Text className="text-sm font-Jakarta text-gray-500 text-center mb-10">This will help us tailor your plan.</Text>
 
         {/* Unit Toggle */}
         <View className="flex-row justify-center items-center mb-6">
-          <Text className="text-md mr-3">Imperial</Text>
+          <Text className="text-md font-JakartaMedium mr-3">Imperial</Text>
           <Switch
             value={isMetric}
             onValueChange={handleUnitToggle}
           />
-          <Text className="text-md ml-3">Metric</Text>
+          <Text className="text-md font-JakartaMedium ml-3">Metric</Text>
         </View>
       </View>
 

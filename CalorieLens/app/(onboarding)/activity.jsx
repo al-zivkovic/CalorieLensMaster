@@ -34,8 +34,8 @@ const ActivityScreen = () => {
       
       {/* Title and Subtitle */}
       <View className="mt-4">
-        <Text className="text-2xl font-bold text-center mb-2">How often do you exercise?</Text>
-        <Text className="text-sm text-gray-500 text-center mb-10">This will help us tailor your plan.</Text>
+        <Text className="text-2xl font-JakartaBold text-center mb-2">How often do you exercise?</Text>
+        <Text className="text-sm font-Jakarta text-gray-500 text-center mb-10">This will help us tailor your plan.</Text>
       </View>
 
       {/* Content Area - Center the Options */}
@@ -50,8 +50,8 @@ const ActivityScreen = () => {
               style={{ width: 30, height: 30, marginRight: 20 }}
             />
             <View>
-              <Text className="text-md font-medium">Sedentary</Text>
-              <Text className="text-xs mt-1 text-gray-500">I spend most of my day sitting</Text>
+              <Text className="text-md font-JakartaMedium">Sedentary</Text>
+              <Text className="text-xs font-Jakarta mt-1 text-gray-500">I spend most of my day sitting</Text>
             </View>
           </TouchableOpacity>
 
@@ -64,8 +64,8 @@ const ActivityScreen = () => {
               style={{ width: 30, height: 30, marginRight: 20 }}
             />
             <View>
-              <Text className="text-md font-medium">Lightly active</Text>
-              <Text className="text-xs mt-1 text-gray-500">I exercise 1-3 times a week</Text>
+              <Text className="text-md font-JakartaMedium">Lightly active</Text>
+              <Text className="text-xs font-Jakarta mt-1 text-gray-500">I exercise 1-3 times a week</Text>
             </View>
           </TouchableOpacity>
 
@@ -78,8 +78,8 @@ const ActivityScreen = () => {
               style={{ width: 30, height: 30, marginRight: 20 }}
             />
             <View>
-              <Text className="text-md font-medium">Moderately active</Text>
-              <Text className="text-xs mt-1 text-gray-500">I exercise 3-5 times a week</Text>
+              <Text className="text-md font-JakartaMedium">Moderately active</Text>
+              <Text className="text-xs font-Jakarta mt-1 text-gray-500">I exercise 3-5 times a week</Text>
             </View>
           </TouchableOpacity>
 
@@ -92,8 +92,8 @@ const ActivityScreen = () => {
               style={{ width: 30, height: 30, marginRight: 20 }}
             />
             <View>
-              <Text className="text-md font-medium">Very active</Text>
-              <Text className="text-xs mt-1 text-gray-500">I exercise intensly 6-7 times a week</Text>
+              <Text className="text-md font-JakartaMedium">Very active</Text>
+              <Text className="text-xs font-Jakarta mt-1 text-gray-500">I exercise intensly 6-7 times a week</Text>
             </View>
           </TouchableOpacity>
         </View>

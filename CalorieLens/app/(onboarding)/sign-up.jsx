@@ -1,24 +1,29 @@
 import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import React from 'react'
-import InputField from '../../components/InputField'
 
-import { icons } from '../../constants'
-import CustomOnboardingButton from '../../components/CustomOnboardingButton'
+import ReactNativeModal from 'react-native-modal'
 import { Link, router } from 'expo-router'
-import OAuth from '../../components/OAuth'
 import { useSignUp } from '@clerk/clerk-expo'
 import { useState } from 'react'
-import ReactNativeModal from 'react-native-modal'
+
+import CustomOnboardingButton from '../../components/CustomOnboardingButton'
+import OAuth from '../../components/OAuth'
+import InputField from '../../components/InputField'
+import { icons } from '../../constants'
+import api from '../../utils/api'
+import { useUser } from '../../context/UserContext'
 
 const SignUp = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const { userData } = useUser();
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
   });
+
   const [verification, setVerification] = useState({
     state: "default",
     error: "",
@@ -31,6 +36,7 @@ const SignUp = () => {
       await signUp.create({
         emailAddress: form.email,
         password: form.password,
+        firstName: form.name,
       });
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setVerification({
@@ -44,6 +50,7 @@ const SignUp = () => {
       Alert.alert("Error", err.errors[0].longMessage);
     }
   };
+  
   const onPressVerify = async () => {
     if (!isLoaded) return;
     try {
@@ -51,7 +58,17 @@ const SignUp = () => {
         code: verification.code,
       });
       if (completeSignUp.status === "complete") {
-        // create a user in our database
+        // create a user in our elixir database and store the user info from ther user context
+        await api.post('/users',
+          { user:
+            {
+              name: form.name,
+              email: form.email,
+              clerkId: completeSignUp.createdUserId,
+              user_info: userData
+            }
+          }
+        );
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({
           ...verification,

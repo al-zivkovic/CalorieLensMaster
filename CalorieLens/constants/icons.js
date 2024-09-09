@@ -13,6 +13,8 @@ import email from '../assets/icons/email.png'
 import google from '../assets/icons/google.png'
 import check from '../assets/icons/check.png'
 import out from '../assets/icons/out.png'
+import calories from '../assets/icons/calories.png'
+import breakfast from '../assets/icons/breakfast.png'
 
 export default {
     home,
@@ -29,5 +31,7 @@ export default {
     email,
     google,
     check,
-    out
+    out,
+    calories,
+    breakfast
 }

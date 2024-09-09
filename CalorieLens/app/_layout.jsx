@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo';
 import { tokenCache } from '../lib/auth';
+import { UserProvider } from '../context/UserContext';
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -36,16 +37,18 @@ const RootLayout = () => {
 
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
-      <ClerkLoaded>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-          >
-            <Stack.Screen name="index" />
-        </Stack>
-      </ClerkLoaded>
+      <UserProvider>
+        <ClerkLoaded>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              gestureEnabled: false,
+            }}
+            >
+              <Stack.Screen name="index" />
+          </Stack>
+        </ClerkLoaded>
+      </UserProvider>
     </ClerkProvider>
   )
 }

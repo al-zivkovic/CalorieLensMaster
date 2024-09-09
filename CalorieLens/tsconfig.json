@@ -15,7 +15,7 @@
     "./**/*.ts",
     "./**/*.tsx",
     "tailwind.config.js"
-  ],
+, "app/(tabs)/log.jsx"  ],
   "exclude": [
     "node_modules"
   ],

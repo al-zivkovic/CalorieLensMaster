@@ -45,8 +45,8 @@ const goal_weightScreen = () => {
       </View>
 
       <View className="mt-4">
-        <Text className="text-2xl font-bold text-center mb-2">What is your goal weight?</Text>
-        <Text className="text-sm text-gray-500 text-center mb-10">Choose a goal weight to personalize your plan.</Text>
+        <Text className="text-2xl font-JakartaBold text-center mb-2">What is your goal weight?</Text>
+        <Text className="text-sm font-Jakarta text-gray-500 text-center mb-10">Choose a goal weight to personalize your plan.</Text>
       </View>
     
       <View className="flex-1 justify-center pb-16">

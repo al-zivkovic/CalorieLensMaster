@@ -37,7 +37,7 @@ const LoadingResultsScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white p-4">
       <View className="flex-1 justify-center items-center">
-        <Text className="text-2xl font-bold text-center mb-2">
+        <Text className="text-2xl font-JakartaBold text-center mb-2">
           Creating your custom plan...
         </Text>
         <ActivityIndicator size="large" color="#1FB28A" />

@@ -76,8 +76,8 @@ const AgeScreen = () => {
       <CustomBackButton />
       
       <View className="mt-4">
-        <Text className="text-2xl font-bold text-center mb-2">When is your birthday?</Text>
-        <Text className="text-sm text-gray-500 text-center mb-10">This will help us tailor your plan.</Text>
+        <Text className="text-2xl font-JakartaBold text-center mb-2">When is your birthday?</Text>
+        <Text className="text-sm text-gray-500 font-Jakarta text-center mb-10">This will help us tailor your plan.</Text>
       </View>
 
       <View className="flex-1 justify-center">

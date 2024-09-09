@@ -9,6 +9,10 @@ defmodule CalorieLensBackendWeb.Router do
     pipe_through :api
 
     post "/users", UserController, :create
+
+    get "/users/:clerkId", UserController, :get_user_by_clerk_id
+
+    get "/users/:user_id/user_info", UserController, :get_user_info
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

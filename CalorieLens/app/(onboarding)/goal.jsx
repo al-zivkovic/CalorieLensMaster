@@ -33,7 +33,7 @@ const GoalScreen = () => {
       <CustomBackButton />
       
       <View className="mt-4">
-        <Text className="text-2xl font-bold text-center mb-2">What is your fitness goal?</Text>
+        <Text className="text-2xl font-JakartaBold text-center mb-2">What is your fitness goal?</Text>
         <Text className="text-sm text-gray-500 text-center mb-10">Choose a goal to personalize your plan.</Text>
       </View>
 
@@ -43,24 +43,24 @@ const GoalScreen = () => {
             className={`p-5 rounded-2xl ${selectedOption === 'Lose' ? 'bg-green-300' : 'bg-gray-100'}`}
             onPress={() => handleOptionSelect('Lose')}
           >
-            <Text className="text-md font-medium">Lose weight</Text>
-            <Text className="text-xs mt-1 text-gray-500">I want to lose fat and slim down</Text>
+            <Text className="text-md font-JakartaMedium">Lose weight</Text>
+            <Text className="text-xs font-Jakarta mt-1 text-gray-500">I want to lose fat and slim down</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             className={`p-5 rounded-2xl ${selectedOption === 'Maintain' ? 'bg-green-300' : 'bg-gray-100'}`}
             onPress={() => handleOptionSelect('Maintain')}
           >
-            <Text className="text-md font-medium">Maintain weight</Text>
-            <Text className="text-xs mt-1 text-gray-500">I am happy with my current weight</Text>
+            <Text className="text-md font-JakartaMedium">Maintain weight</Text>
+            <Text className="text-xs font-Jakarta mt-1 text-gray-500">I am happy with my current weight</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             className={`p-5 rounded-2xl ${selectedOption === 'Gain' ? 'bg-green-300' : 'bg-gray-100'}`}
             onPress={() => handleOptionSelect('Gain')}
           >
-            <Text className="text-md font-medium">Gain weight</Text>
-            <Text className="text-xs mt-1 text-gray-500">I want to build muscle and gain mass</Text>
+            <Text className="text-md font-JakartaMedium">Gain weight</Text>
+            <Text className="text-xs font-Jakarta mt-1 text-gray-500">I want to build muscle and gain mass</Text>
           </TouchableOpacity>
         </View>
       </View>

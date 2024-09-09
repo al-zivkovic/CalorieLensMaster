@@ -6,7 +6,7 @@ defmodule CalorieLensBackend.Accounts do
   import Ecto.Query, warn: false
   alias CalorieLensBackend.Repo
 
-  alias CalorieLensBackend.Accounts.User
+  alias CalorieLensBackend.Accounts.{User, UserInfo}
 
   @doc """
   Returns the list of users.
@@ -53,6 +53,20 @@ defmodule CalorieLensBackend.Accounts do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def create_user_info(attrs \\ %{}) do
+    %UserInfo{}
+    |> UserInfo.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def get_user_by_clerk_id(clerk_id) do
+    Repo.get_by(User, clerkId: clerk_id)
+  end
+
+  def get_user_info(user_id) do
+    Repo.get_by(UserInfo, user_id: user_id)
   end
 
   @doc """

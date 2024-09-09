@@ -37,12 +37,12 @@ const Goal_speedScreen = () => {
       <CustomBackButton />
 
       <View className="mt-4">
-        <Text className="text-2xl font-bold text-center mb-2">How fast do you want to achieve your goal?</Text>
-        <Text className="text-sm text-gray-500 text-center mb-10">Choose a speed to personalize your plan.</Text>
+        <Text className="text-2xl font-JakartaBold text-center mb-2">How fast do you want to achieve your goal?</Text>
+        <Text className="text-sm font-Jakarta text-gray-500 text-center mb-10">Choose a speed to personalize your plan.</Text>
       </View>
 
       <View className="flex-1 justify-center">
-        <Text className="text-lg font-bold text-center mb-4">{goal} {goal_speed.toFixed(1)} {unit === 'metric' ? 'kg per week' : 'lbs per week'}</Text>
+        <Text className="text-lg font-JakartaBold text-center mb-4">{goal} {goal_speed.toFixed(1)} {unit === 'metric' ? 'kg per week' : 'lbs per week'}</Text>
         <Slider
           style={{ width: '100%', height: 40 }}
           minimumValue={minValue}
