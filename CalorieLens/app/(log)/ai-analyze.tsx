@@ -1,7 +1,9 @@
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useState, useRef } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { OpenAI } from 'openai';
+
+import { icons } from '../../constants';
 
 export default function App() {
   const [facing, setFacing] = useState<CameraType>('back');
@@ -48,11 +50,10 @@ export default function App() {
         ref={cameraRef} // Attach the ref to the CameraView component
       >
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleTorch}>
-            <Text style={styles.text}>Toggle Torch</Text>
+          <TouchableOpacity style={styles.flashButton} onPress={toggleTorch}>
+            <Image source={icons.torch} style={styles.iconSmall} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={takePhoto}>
-            <Text style={styles.text}>Take Photo</Text>
+          <TouchableOpacity style={styles.cameraButton} onPress={takePhoto}>
           </TouchableOpacity>
         </View>
       </CameraView>
@@ -73,19 +74,44 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'transparent',
-    margin: 64,
-  },
-  button: {
-    flex: 1,
-    alignSelf: 'flex-end',
+    justifyContent: 'center', // Align center
     alignItems: 'center',
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    bottom: 30, // Adjusts the position of the buttons to the bottom
+    width: '100%', // Makes the container take full width
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+  flashButton: {
+    position: 'absolute',
+    left: 30, // Align the flash button to the left
+    width: 60, 
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    elevation: 5, // Optional: Add shadow for a better look
+    opacity: 0.8, // Optional: Make the button semi-transparent
+  },
+  cameraButton: {
+    width: 80, // Camera button size
+    height: 80,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    elevation: 5,
+    opacity: 0.9,
+  },
+  iconSmall: {
+    width: 30, // Smaller icon size for flash
+    height: 30,
+    resizeMode: 'contain',
+  },
+  iconLarge: {
+    width: 50, // Larger icon for camera button
+    height: 50,
+    resizeMode: 'contain',
   },
 });

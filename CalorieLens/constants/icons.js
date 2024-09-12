@@ -15,6 +15,11 @@ import check from '../assets/icons/check.png'
 import out from '../assets/icons/out.png'
 import calories from '../assets/icons/calories.png'
 import breakfast from '../assets/icons/breakfast.png'
+import search from '../assets/icons/search.png'
+import filledcircle from '../assets/icons/filledcircle.png'
+import torch from '../assets/icons/torch.png'
+import camera from '../assets/icons/camera.png'
+import barcode from '../assets/icons/barcode.png'
 
 export default {
     home,
@@ -33,5 +38,10 @@ export default {
     check,
     out,
     calories,
-    breakfast
+    breakfast,
+    search,
+    filledcircle,
+    torch,
+    camera,
+    barcode,
 }

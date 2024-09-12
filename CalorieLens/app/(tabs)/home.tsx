@@ -1,10 +1,14 @@
-import { SignedIn, SignedOut, useUser, useAuth } from '@clerk/clerk-expo';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
+import { useUser, useAuth } from '@clerk/clerk-react';
+import { useEffect, useState } from 'react';
 import { Link, router } from 'expo-router';
 import { Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CircularProgress from 'react-native-circular-progress-indicator';
-import { useEffect, useState } from 'react';
+import ReactNativeModal from 'react-native-modal';  // Import react-native-modal
+
 import api from '../../utils/api';
+import CustomLogButton from '../../components/CustomLogButton';
 import { icons } from '../../constants';
 
 const Home = () => {
@@ -15,6 +19,9 @@ const Home = () => {
   const [protein, setProtein] = useState(0);
   const [carbs, setCarbs] = useState(0);
   const [fats, setFats] = useState(0);
+  const [isModalVisible, setModalVisible] = useState(false);  // State for modal visibility
+  const [mealName, setMealName] = useState('');  // State to track which meal is selected
+
   const [dailyGoals, setDailyGoals] = useState({
     calories: 2500,
     protein: 150,
@@ -27,6 +34,20 @@ const Home = () => {
     router.replace('/sign-in');
   };
 
+  // Function to toggle modal visibility and set the selected meal name
+  const toggleModal = (meal?: string) => {
+    if (meal) {
+      setMealName(meal);
+    }
+    setModalVisible(!isModalVisible);
+  };
+
+  // Function to handle button click and close modal before navigating
+  const handleNavigation = (path: string) => {
+    toggleModal();  // Close the modal
+    router.push(path);  // Navigate to the specified path
+  };
+
   const renderMealCard = (mealName: string, iconSource: any) => (
     <View className="bg-gray-100 rounded-lg p-4 shadow-md mt-4 flex flex-row justify-between items-center">
       <View className="flex flex-row items-center">
@@ -34,8 +55,8 @@ const Home = () => {
         <Text className="text-md font-JakartaSemiBold pl-3">{mealName}</Text>
       </View>
       <TouchableOpacity 
-        className="bg-blue-500 rounded-lg p-2"
-        onPress={() => router.push('/log')}
+        className="bg-blue-500 rounded-xl p-3 pl-5 pr-5"
+        onPress={() => toggleModal(mealName)}  // Open modal on press
       >
         <Text className="text-white font-JakartaSemiBold">Log</Text>
       </TouchableOpacity>
@@ -87,8 +108,11 @@ const Home = () => {
   }, [user]);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className='p-4' showsVerticalScrollIndicator={false}>
+    <SafeAreaView className="flex-1 bg-white"
+      edges={['top']}  // Ensure no padding or margin at the top
+    >
+      {/* Ensuring no padding or margin at the top */}
+      <ScrollView className="p-4" showsVerticalScrollIndicator={false}>
         <View>
           <SignedIn>
             <View className="flex flex-row items-center justify-between my-5">
@@ -139,7 +163,7 @@ const Home = () => {
             <View className="bg-gray-100 rounded-lg p-4 shadow-md mt-4">
               <Text className="text-lg font-JakartaSemiBold mb-4">Macronutrients</Text>
               
-              <View className='flex-row justify-between'>
+              <View className="flex-row justify-between">
                 <View style={{ alignItems: 'center' }}>
                   <CircularProgress
                     value={protein}
@@ -187,7 +211,7 @@ const Home = () => {
               </View>
             </View>
 
-            <View className='p-4'>
+            <View className="p-4">
               <Text className="text-lg font-JakartaSemiBold mt-4">Food Intake</Text>
 
               {renderMealCard('Breakfast', icons.breakfast)}
@@ -195,6 +219,49 @@ const Home = () => {
               {renderMealCard('Dinner', icons.breakfast)}
               {renderMealCard('Snacks', icons.breakfast)}
             </View>
+
+            <View className="p-4 pb-10">
+              <Text className='text-lg font-JakartaSemiBold'>Exercise</Text>
+              {renderMealCard('Cardio', icons.breakfast)}
+            </View>
+
+            {/* Modal */}
+            <ReactNativeModal
+              isVisible={isModalVisible}
+              onBackdropPress={() => toggleModal()}  // Close modal on tap outside
+              swipeDirection="down"  // Enable swipe down to close
+              onSwipeComplete={() => toggleModal()} // Ensure no event object is passed
+              style={{ justifyContent: 'flex-end', margin: 0 }}
+            >
+              <View className="bg-white p-4 pb-20 rounded-t-xl">
+                <Text className="text-lg font-JakartaExtraBold text-center mb-10">
+                  Log {mealName}
+                </Text>
+
+                {/* Container for the buttons */}
+                <View className="flex-row justify-between">
+                  <CustomLogButton
+                    title="Barcode"
+                    Icon={icons.barcode}
+                    onPress={() => handleNavigation('/barcode-scan')}
+                    className="mx-2"
+                  />
+                  <CustomLogButton
+                    title="Search"
+                    Icon={icons.search}
+                    onPress={() => handleNavigation('/search')}
+                    className="mx-2"
+                  />
+                  <CustomLogButton
+                    title="AI Analyze"
+                    Icon={icons.camera}
+                    onPress={() => handleNavigation('/ai-analyze')}
+                    className="mx-2"
+                  />
+                </View>
+              </View>
+            </ReactNativeModal>
+
           </SignedIn>
 
           <SignedOut>

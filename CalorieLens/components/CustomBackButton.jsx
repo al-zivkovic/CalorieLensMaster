@@ -2,14 +2,17 @@ import { Text } from 'react-native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
+import * as Haptics from 'expo-haptics';
 
 const CustomBackButton = ({ customBack }) => {
   return (
     <TouchableOpacity
       onPress={() => {
         if (customBack) {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
           customBack(); // Use custom back function if provided
         } else {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
           router.back(); // Otherwise, use default back behavior
         }
       }}
@@ -20,7 +23,7 @@ const CustomBackButton = ({ customBack }) => {
         zIndex: 1,
       }}
     >
-      <Text style={{ fontSize: 25 }}>←</Text>
+      <Text style={{ fontSize: 30 }}>←</Text>
     </TouchableOpacity>
   );
 };
