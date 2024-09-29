@@ -4,7 +4,7 @@
 CalorieLens is an advanced calorie tracker that allows users to log meals using their phone's camera. Utilizing AI, CalorieLens will analyze the photo in realtime to produce an accurate estimate of the macronutrients along with the ingredients of the meal.
 
 
-## Features
+## ⭐️ Features
 
 - Meal logging
 - Food search using USDA Food API
@@ -12,7 +12,18 @@ CalorieLens is an advanced calorie tracker that allows users to log meals using 
 - Custom tailored calorie and macronutrient intake based on user's biometrics and goals
 
 
-## FAQ
+## 💻 Tech Stack
+
+**Client:** React Native, TypeScript, TailwindCSS
+
+**Server:** Elixir
+
+**Database:** PostgreSQL
+
+**Cloud:** Supabase
+
+
+## ❓ FAQ
 
 #### How do you analyze meals using a phone camera?
 
@@ -23,7 +34,7 @@ We use Open AI's gpt-4.0 model to analyze the meals.
 Expect a 100-200 calorie +/-.
 
 
-## Authors
+## 🖊️ Authors
 
 - [@al-zivkovic](https://www.github.com/al-zivkovic)
 
