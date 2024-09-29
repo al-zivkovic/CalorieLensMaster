@@ -10,7 +10,7 @@ CalorieLens is an advanced calorie tracker that allows users to log meals using 
 - Meal logging
 - Food search using USDA Food API
 - Camera based meal analyzation
-- Custom tailored calorie and macronutrient intake based on user's biometrics and goals
+- Custom tailored calorie and macronutrient intake plans based on user's biometrics and goals
 
 
 ## 💻 Tech Stack
