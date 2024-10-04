@@ -1,7 +1,7 @@
 
 # CalorieLens
 
-CalorieLens is an advanced calorie tracker that allows users to log meals using their phone's camera. AI will analyze the photo in realtime to produce an accurate estimate of the macronutrients along with the ingredients of the meal.
+CalorieLens is an advanced calorie tracker that allows users to log meals using their phone's camera. Aritfical Intelligence will analyze the photo in realtime to produce an accurate estimate of the macronutrients along with the ingredients of the meal.
 
 
 ## ⭐️ Features
