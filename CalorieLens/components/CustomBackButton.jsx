@@ -23,7 +23,7 @@ const CustomBackButton = ({ customBack }) => {
         zIndex: 1,
       }}
     >
-      <Text style={{ fontSize: 30 }}>←</Text>
+      <Text style={{ color:"#FFF" ,fontSize: 30 }}>←</Text>
     </TouchableOpacity>
   );
 };

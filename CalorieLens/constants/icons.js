@@ -20,6 +20,7 @@ import filledcircle from '../assets/icons/filledcircle.png'
 import torch from '../assets/icons/torch.png'
 import camera from '../assets/icons/camera.png'
 import barcode from '../assets/icons/barcode.png'
+import book from '../assets/icons/book.png'
 
 export default {
     home,
@@ -44,4 +45,5 @@ export default {
     torch,
     camera,
     barcode,
+    book
 }

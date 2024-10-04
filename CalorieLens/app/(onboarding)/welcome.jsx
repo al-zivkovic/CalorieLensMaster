@@ -25,7 +25,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar translucent={true} backgroundColor="transparent" style="dark" />
+      <StatusBar translucent={true} backgroundColor="transparent" style="light" />
 
       <SafeAreaView className="flex items-center justify-between bg-white h-full">
         <TouchableOpacity 

@@ -48,4 +48,5 @@ defmodule CalorieLensBackendWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug CalorieLensBackendWeb.Router
+  plug CORSPlug, origin: ["*"]
 end

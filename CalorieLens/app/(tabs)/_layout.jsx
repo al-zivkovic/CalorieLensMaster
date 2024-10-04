@@ -1,6 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Tabs, useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
+import { StatusBar } from 'expo-status-bar';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 import { icons } from '../../constants';
 
@@ -18,11 +21,11 @@ const TabIcon = ({ icon, color, name, focused, route }) => {
       activeOpacity={0.7}
       style={{ alignItems: 'center', paddingTop: 10, width: 70 }}  // Align icon and text vertically and restrict clickable area
     >
-      <Image 
-        source={icon}
-        resizeMode='contain'
-        tintColor={color}
-        style={{ width: 24, height: 24, marginBottom: 5 }}  // Add marginBottom to space icon and text
+      <Icon 
+        name={icon}
+        size={24}
+        color={color}
+        style={{ marginBottom: 5 }}  // Add marginBottom to space icon and text
       />
       <Text style={{ color: color, fontSize: 12, fontWeight: focused ? 'bold' : 'normal', textAlign: 'center' }}>
         {name}
@@ -42,32 +45,45 @@ const TabsLayout = () => {
           tabBarStyle: {
             backgroundColor: '#000',
             borderTopWidth: 2,
-            borderTopColor: '#232533',
+            borderTopColor: '#000',
             height: 90,
             paddingTop: 10,
           },
         }}
         tabBar={({ state }) => (
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: 80, backgroundColor: '#000', borderTopWidth: 2, borderTopColor: '#232533' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-around', height: 80, backgroundColor: '#000', borderTopWidth: 2, borderTopColor: '#000' }}>
             <TabIcon
-              icon={icons.home}
+              icon="view-dashboard"
               color={state.index === 0 ? '#10D29A' : '#FFF'}
-              name='Home'
+              name='Dashboard'
               focused={state.index === 0}
-              route='/home'
+              route='/dashboard'
             />
             <TabIcon
-              icon={icons.profile}
+              icon="book"
               color={state.index === 1 ? '#10D29A' : '#FFF'}
-              name='Profile'
+              name='Journal'
               focused={state.index === 1}
+              route='/journal'
+            />
+            <TabIcon
+              icon="account"
+              color={state.index === 2 ? '#10D29A' : '#FFF'}
+              name='Profile'
+              focused={state.index === 2}
               route='/profile'
             />
           </View>
         )}
       >
         <Tabs.Screen
-          name='home'
+          name='dashboard'
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
+          name='journal'
           options={{
             headerShown: false,
           }}
@@ -79,6 +95,8 @@ const TabsLayout = () => {
           }}
         />
       </Tabs>
+
+      <StatusBar backgroundColor="#161622" style="light" />
     </>
   );
 };

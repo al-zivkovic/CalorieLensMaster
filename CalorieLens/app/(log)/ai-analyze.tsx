@@ -3,10 +3,10 @@ import { useState, useRef } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, Image, ActivityIndicator } from 'react-native';
 import { OpenAI } from 'openai';
 import * as FileSystem from 'expo-file-system';
-import { icons } from '../../constants';
 import * as ImageManipulator from 'expo-image-manipulator';
 import ReactNativeModal from 'react-native-modal';
 
+import { icons } from '../../constants';
 import { GPT4_API_KEY } from '@env';
 
 export default function App() {

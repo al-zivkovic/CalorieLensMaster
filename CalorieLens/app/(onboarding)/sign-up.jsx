@@ -36,7 +36,7 @@ const SignUp = () => {
       await signUp.create({
         emailAddress: form.email,
         password: form.password,
-        firstName: form.name,
+        name: form.name,
       });
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setVerification({
@@ -50,6 +50,11 @@ const SignUp = () => {
       Alert.alert("Error", err.errors[0].longMessage);
     }
   };
+
+  // translate the day, month, year to a date string from the user context
+  // if the month is less than 10, add a 0 in front of it
+  const date = `${userData.year}-${userData.month < 10 ? `0${userData.month}` : userData.month}-${userData.day < 10 ? `0${userData.day}` : userData.day}`;
+
   const onPressVerify = async () => {
     if (!isLoaded) return;
     try {
@@ -57,22 +62,44 @@ const SignUp = () => {
         code: verification.code,
       });
       if (completeSignUp.status === "complete") {
-        // create a user in our elixir database and store the user info from ther user context
-        await api.post('/users',
-          { user:
-            {
-              name: form.name,
-              email: form.email,
-              clerkId: completeSignUp.createdUserId,
-              user_info: userData
-            }
-          }
-        );
-        await setActive({ session: completeSignUp.createdSessionId });
-        setVerification({
-          ...verification,
-          state: "success",
+        // Send data to your Elixir API instead of Supabase directly
+        const response = await api.post('/users', {
+          user: {
+            name: form.name,
+            email: form.email,
+            birthday: date,
+            gender: userData.gender,
+            clerk_id: completeSignUp.createdUserId,
+            user_preferences: {
+              unit: userData.unit,
+              height: userData.height,
+              weight: userData.weight,
+              activity: userData.activity,
+              goal: userData.goal,
+              goal_weight: userData.goal_weight,
+              goal_speed: userData.goal_speed,
+            },
+            user_plan: {
+              bmr: userData.plan.BMR,
+              tdee: userData.plan.TDEE,
+              caloric_intake: userData.plan.caloricIntake,
+              fat: userData.plan.macronutrients.fatGrams,
+              protein: userData.plan.macronutrients.proteinGrams,
+              carbs: userData.plan.macronutrients.carbGrams,
+            },
+          },
         });
+  
+        if (response.status === 201) {
+          console.log('User data inserted successfully via the Elixir backend');
+          await setActive({ session: completeSignUp.createdSessionId });
+          setVerification({
+            ...verification,
+            state: "success",
+          });
+        } else {
+          console.log('Error inserting user data:', response.data.errors);
+        }
       } else {
         setVerification({
           ...verification,
@@ -81,15 +108,14 @@ const SignUp = () => {
         });
       }
     } catch (err) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
       setVerification({
         ...verification,
         error: err.errors && err.errors[0] ? err.errors[0].longMessage : "Unknown error occurred",
         state: "failed",
-      });      
+      });
     }
   };
+  
 
   return (
     <ScrollView className="flex-1 bg-white">
@@ -189,10 +215,10 @@ const SignUp = () => {
               You have successfully verified your account.
             </Text>
             <CustomOnboardingButton
-              title="Browse Home"
+              title="Continue"
               onPress={() => {
                 setShowSuccessModal(false);
-                router.push(`/home`)}}
+                router.push(`/dashboard`)}}
               className="mt-5"
             />
           </View>

@@ -37,7 +37,7 @@ const LogLayout = () => {
         />
       </Stack>
 
-      <StatusBar backgroundColor="#161622" style="dark" />
+      <StatusBar backgroundColor="#161622" style="light" />
     </>
   );
 };
